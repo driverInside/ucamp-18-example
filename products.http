@@ -1,0 +1,26 @@
+@hostname=http://localhost
+@port=4000
+@host={{hostname}}:{{port}}
+
+###
+GET {{host}}/products
+Content-Type: application/json
+
+###
+GET {{host}}/products/0
+Content-Type: application/json
+
+###
+POST {{host}}/products
+Content-Type: application/json
+
+{
+    "sku": "123-abc-ggFlol",
+    "name": "Laboratorio MiAlegría",
+    "description": "Lo que nunca me trajeron los reyes",
+    "image": "http://placekitten.com/g/100/100",
+    "price": "10053",
+    "currency": "USD",
+    "product": "Sadness",
+    "quantity": "800"
+}
