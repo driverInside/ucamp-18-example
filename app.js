@@ -1,9 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 
 const router = require('./apis')
 
-
+app.use(cors())
 // method(path: string, cb(req, res [, next]))
 /**
  * req  attr body, query, params
