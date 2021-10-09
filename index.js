@@ -1,5 +1,7 @@
 const app = require('./app')
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
+
 require('./db/mongodb')
 const PORT = 4000
 

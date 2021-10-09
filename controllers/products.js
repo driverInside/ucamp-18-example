@@ -1,8 +1,10 @@
 const ProductModel = require('../models/products')
 
 const getProducts = async () => {
-  const products = await ProductModel.find({})
-  return products
+  // const products = await ProductModel.find({})
+  // return products
+
+  return ProductModel.find({})
 }
 
 /**
@@ -14,11 +16,8 @@ const getProducts = async () => {
  * @param {string} id The product id.
  * @returns A single product with the given id or null
  */
-const getProductById = async (id) => {
-  const product = await ProductModel.findOne({
-    _id: id
-  })
-  return product
+const getProductById = async (_id) => {
+  return ProductModel.findOne({ _id })
 }
 
 const createProduct = async (body) => {
@@ -29,15 +28,28 @@ const createProduct = async (body) => {
   // // body[id] = id
   // products.push(body)
   // return body
-  const newProduct = new ProductModel(body)
+  const newProd = new ProductModel(body)
 
-  await newProduct.save()
+  await newProd.save()
 
-  return newProduct.toObject()
+  return newProd
+}
+
+const updateProduct = async (_id, updateObject) => {
+  return ProductModel.findOneAndUpdate({ _id }, updateObject, {
+    upsert: false,
+    new: true
+  })
+}
+
+const removeProduct = async (_id) => {
+  return ProductModel.findOneAndDelete({ _id })
 }
 
 module.exports = {
   getProducts,
   getProductById,
-  createProduct
+  createProduct,
+  updateProduct,
+  removeProduct
 }
